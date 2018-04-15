@@ -46,35 +46,38 @@ var GameState = {
       distance: 0
     }
     this.startInput(this.brake)
-    //enable input
-    // this.brake.inputEnabled = true;
-    // this.brake.input.pixelPerfectClick = true;
-    // this.brake.events.onInputDown.add(this.animateBikePart, this)
-
-    //load arrows
-    // this.leftArrow = this.game.add.sprite(60, this.game.world.centerY)
-    // this.leftArrow.anchor.setTo(0.5)
-    // this.leftArrow.scale.x = -1
-    // this.leftArrow.customParams = {
-    //   direction: -1
-    // }
-    //
-    // this.rightArrow = this.game.add.sprite(580, this.game.world.centerY)
-    // this.rightArrow.anchor.setTo(0.5)
-    // this.rightArrow.customParams = {
-    //   direction: 1
-    // }
 
   },
 
   update: function() {
     //wheels spinnin'
     this.wheel.angle += .5
+
+    // hpLabel.text = `Health: ${this.health}`
+    // distLabel.text = `Distance: ${this.distance}`
   },
+
+
+
   animateBikePart: function(part) {
-    console.log("Hide everything and then tween the part to the center");
     console.log(part.customParams.health + ' Percent!');
+    
+    let distance = part.customParams.distance
+    let health = part.customParams.health
+
+      hpLabel = this.game.add.text(this.game.world.centerX - 100, 20, `Health: ${health}`, {
+        font: '24px Arial',
+        fill: '#000'
+      })
+
+      distLabel = this.game.add.text(this.game.world.centerX - 100, 60, `Distance: ${distance}`, {
+        font: '24px Arial',
+        fill: '#000'
+      })
+
+
   },
+
   startInput: function(part) {
     part.inputEnabled = true;
     part.input.pixelPerfectClick = true;
